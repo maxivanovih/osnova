@@ -39,7 +39,7 @@
   /* --- СТИЛИ ДЛЯ КАРТИНКИ-ЛОГОТИПА --- */
   .logo-img {
     max-width: 100%;
-    width: 600px; /* Ширина логотипа на компьютере (можешь изменить) */
+    width: 600px;
     height: auto;
     margin-bottom: 15px;
     animation: pulse-img 3s infinite;
@@ -64,6 +64,111 @@
   }
   .description span { color: var(--red-bright); font-weight: bold; }
 
+  /* ============================
+     БЛОК ЛАУНЧЕРА (новая категория сверху)
+     ============================ */
+  .launcher-section {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 55px;
+    animation: fadeInDown 0.8s ease 0.15s both;
+  }
+
+  .launcher-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 45px 30px;
+    background: linear-gradient(160deg, #2b0606 0%, #0a0000 100%);
+    border: 2px solid var(--red-bright);
+    border-radius: 24px;
+    box-shadow: 0 0 60px rgba(255, 43, 43, 0.25), inset 0 0 50px rgba(255, 43, 43, 0.07);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .launcher-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 43, 43, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .launcher-icon {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 15px rgba(255, 43, 43, 0.7));
+    animation: floatIcon 2.5s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .launcher-title {
+    font-size: clamp(1.3rem, 4vw, 2.1rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--red-bright);
+    text-shadow: 0 0 25px rgba(255, 43, 43, 0.6);
+    z-index: 1;
+  }
+
+  .launcher-sub {
+    margin-top: 12px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    z-index: 1;
+  }
+
+  .launcher-sub b { color: #7dff9a; }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 30px;
+    padding: 24px 55px;
+    font-size: clamp(1rem, 3vw, 1.45rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #8a0000 0%, #ff2b2b 50%, #8a0000 100%);
+    background-size: 200% auto;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(255, 43, 43, 0.45);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: shine 4s linear infinite;
+    z-index: 1;
+  }
+
+  .download-btn:hover {
+    transform: translateY(-5px) scale(1.04);
+    box-shadow: 0 20px 50px rgba(255, 43, 43, 0.75);
+  }
+
+  .launcher-warning {
+    margin-top: 25px;
+    padding: 14px 24px;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffd166;
+    border: 2px dashed #ffd166;
+    border-radius: 12px;
+    background: rgba(255, 209, 102, 0.07);
+    z-index: 1;
+    animation: warnPulse 2s ease-in-out infinite;
+  }
+
+  /* ============================
+     КАРТОЧКИ-ССЫЛКИ
+     ============================ */
   .links-container {
     display: flex;
     gap: 25px;
@@ -134,7 +239,9 @@
     z-index: 1;
   }
 
-  /* ДИСКОРД КНОПКА */
+  /* ============================
+     ОТДЕЛЬНАЯ КНОПКА DISCORD
+     ============================ */
   .discord-container {
     width: 100%;
     max-width: 1000px;
@@ -146,13 +253,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 15px;
+    gap: 25px;
     width: 100%;
-    padding: 30px 20px;
+    padding: 30px 25px;
     background: linear-gradient(90deg, #1a1a24 0%, #15151c 100%);
     border: 2px solid var(--discord-color);
-    border-radius: 15px;
+    border-radius: 18px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease;
@@ -162,7 +268,7 @@
 
   .discord-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(88, 101, 242, 0.4);
+    box-shadow: 0 15px 45px rgba(88, 101, 242, 0.5);
     background: linear-gradient(90deg, #202033 0%, #1a1a24 100%);
     border-color: #7289da;
   }
@@ -171,31 +277,33 @@
     font-size: 3rem;
     color: var(--discord-color);
     filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.5));
+    transition: transform 0.3s;
   }
+  .discord-btn:hover .discord-icon { transform: scale(1.12); }
 
-  /* ГРАДИЕНТНЫЙ ТЕКСТ */
-  .gradient-text {
-    font-size: clamp(1.2rem, 4vw, 2rem);
+  .discord-text { text-align: left; }
+
+  .discord-text .gradient-text {
+    font-size: clamp(1.2rem, 4vw, 1.9rem);
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #ff2b2b, #ff8888, #ffffff, #ff8888, #ff2b2b);
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #5865F2, #a5b0ff, #ffffff, #a5b0ff, #5865F2);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shine 3s linear infinite;
-    text-align: center;
-    margin-top: 5px;
   }
 
   .discord-text p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 5px;
+    margin-top: 6px;
   }
 
-  /* КНОПКА ПРАВИЛ */
+  /* ============================
+     КНОПКА ПРАВИЛ
+     ============================ */
   .rules-container {
     width: 100%;
     max-width: 1000px;
@@ -260,10 +368,19 @@
 
   @keyframes shine { to { background-position: 200% center; } }
   
-  /* Анимация свечения для картинки */
   @keyframes pulse-img {
     0%, 100% { filter: drop-shadow(0 0 15px rgba(255,43,43,0.4)); }
     50% { filter: drop-shadow(0 0 35px rgba(255,43,43,0.8)); }
+  }
+
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes warnPulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 209, 102, 0); }
+    50% { box-shadow: 0 0 25px rgba(255, 209, 102, 0.35); }
   }
 
   @keyframes fadeInDown {
@@ -278,18 +395,38 @@
   @media (max-width: 850px) {
     .links-container { flex-direction: column; gap: 20px; }
     .link-card { width: 100%; height: 160px; }
-    .logo-img { width: 90%; } /* Чтобы на телефоне картинка не вылезала за края */
+    .logo-img { width: 90%; }
+    .launcher-card { padding: 35px 20px; }
+    .download-btn { padding: 20px 28px; width: 100%; }
+    .discord-btn { flex-direction: column; gap: 15px; text-align: center; }
+    .discord-text { text-align: center; }
   }
 </style>
 </head>
 <body>
 
   <header>
-    <!-- ВМЕСТО ТЕКСТА ТЕПЕРЬ КАРТИНКА. Не забудь закинуть logo.png на GitHub! -->
     <img src="logo.png" alt="Багрянство" class="logo-img">
-    
     <p>Выживание · Моды · Приключения</p>
   </header>
+
+  <!-- ============================
+       НОВАЯ КАТЕГОРИЯ: ЛАУНЧЕР
+       ============================ -->
+  <section class="launcher-section">
+    <div class="launcher-card">
+      <div class="launcher-icon">⬇️</div>
+      <h2 class="launcher-title">Лаунчер сервера Багрянство</h2>
+      <p class="launcher-sub">Просто скачивай и устанавливай. <b>БЕЗ ВИРУСОВ.</b></p>
+
+      <a href="https://spixy.site/api/launcher/dl/01cb051c-e96f-43bb-a630-6042ffdcf808/bagryanstvo-c03ceb3ffc29.exe"
+         class="download-btn" target="_blank" rel="noopener">
+        ⬇ Скачать лаунчер
+      </a>
+
+      <p class="launcher-warning">ЕСЛИ ВИНДА РУГАЕТСЯ — ЭТО НОРМАЛЬНО!!!</p>
+    </div>
+  </section>
 
   <main class="description">
     Добро пожаловать в <span>Багрянство</span>! 🏝️ Вы появляетесь на загадочном и опасном острове, где каждый шаг может стать последним. ⚔️ Исследуйте неизведанные земли, ищите других выживших и покоряйте мир, наполненный десятками уникальных модов: от продвинутой боевки до сложной магии. ✨ Ваше приключение начинается прямо сейчас.
@@ -315,12 +452,15 @@
     </a>
   </div>
 
+  <!-- ============================
+       ОТДЕЛЬНАЯ КНОПКА DISCORD
+       ============================ -->
   <div class="discord-container">
-    <a href="https://discord.gg/UKNttPkqN6" class="discord-btn" target="_blank">
+    <a href="https://discord.gg/UKNttPkqN6" class="discord-btn" target="_blank" rel="noopener">
       <div class="discord-icon">💬</div>
       <div class="discord-text">
-        <p>Переходи на сервер Discord и играй!</p>
-        <h3 class="gradient-text">👆👆👆 АЙПИ И СБОРКА ТУТ 👆👆👆</h3>
+        <h3 class="gradient-text">Discord</h3>
+        <p>Заходи на сервер и играй вместе со всеми!</p>
       </div>
     </a>
   </div>
